@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviso de Privacidad — Acadaily</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:    #2EC89E;
+      --primary-bg: #E0F8F2;
+      --primary-30: rgba(46,200,158,0.3);
+      --primary-20: rgba(46,200,158,0.2);
+      --text-primary:   #1A1A1A;
+      --text-secondary: #6B7280;
+      --border:     #E5E7EB;
+      --surface:    #F8F9FA;
+      --white:      #FFFFFF;
+      --warn-bg:    #FFF8E1;
+      --warn-border:#FFCC02;
+      --warn-text:  #92680A;
+      --radius:     14px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top bar ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+    }
+
+    .logo-chip {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-chip svg { width: 17px; height: 17px; fill: #fff; }
+
+    .logo-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* ── Page ── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    @media (min-width: 600px) {
+      .page { padding-left: 40px; padding-right: 40px; }
+    }
+
+    /* ── Hero ── */
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* ── Warning banner ── */
+    .warn-banner {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 24px;
+    }
+    .warn-banner svg { width: 18px; height: 18px; fill: var(--warn-text); flex-shrink: 0; margin-top: 1px; }
+    .warn-banner p { font-size: 12px; color: var(--warn-text); line-height: 1.5; }
+
+    /* ── Accordion sections ── */
+    .sections { display: flex; flex-direction: column; gap: 10px; }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    details[open] {
+      background: var(--primary-bg);
+      border-color: var(--primary-30);
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+
+    .summary-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: color 0.2s;
+    }
+    details[open] .summary-title { color: var(--primary); }
+
+    .chevron {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      color: var(--text-secondary);
+      transition: transform 0.25s ease, color 0.2s;
+    }
+    details[open] .chevron {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .section-body {
+      padding: 0 16px 14px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--primary-20);
+      margin-bottom: 12px;
+    }
+
+    .section-body p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-30);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 32px;
+    }
+
+    .contact-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-row svg { width: 15px; height: 15px; fill: var(--primary); flex-shrink: 0; margin-top: 1px; }
+    .contact-row a { color: var(--text-primary); text-decoration: none; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-chip">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+    </svg>
+  </div>
+  <span class="logo-name">Acadaily</span>
+</header>
+
+<div class="page">
+
+  <h1>Aviso de Privacidad</h1>
+  <p class="subtitle">Última actualización: agosto de 2025</p>
+
+  <div class="warn-banner">
+    <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+    <p>Este aviso de privacidad opera bajo la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento.</p>
+  </div>
+
+  <div class="sections">
+
+    <details>
+      <summary>
+        <span class="summary-title">1. Identidad y domicilio del responsable</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>El responsable del tratamiento de tus datos personales es:</p>
+        <p>Nombre: Erick Eduardo Acevedo Colunga<br>Correo: acadaily.mx@gmail.com<br>Sitio web: www.acadaily.mx</p>
+        <p>Acadaily es una plataforma de gestión escolar que opera bajo la legislación mexicana, específicamente la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">2. Datos personales que recopilamos</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily recopila las siguientes categorías de datos personales según el tipo de usuario:</p>
+        <p><strong>Directores y Maestros:</strong> nombre completo, correo electrónico, fotografía de perfil (opcional) e institución educativa a la que pertenecen.</p>
+        <p><strong>Padres y tutores:</strong> nombre completo, correo electrónico, fotografía de perfil (opcional) y relación con el alumno.</p>
+        <p><strong>Alumnos</strong> (datos proporcionados por la institución o tutor): nombre completo, fotografía de perfil (opcional), código QR de identificación, grupo y grado escolar, registros de asistencia, historial de calificaciones y tareas, e información de excursiones escolares.</p>
+        <p>No recopilamos datos biométricos. El código QR es un identificador único generado por la plataforma y no constituye un dato biométrico conforme a la LFPDPPP.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">3. Datos sensibles</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily puede tratar datos que, por su naturaleza, requieren especial protección:</p>
+        <p><strong>Fotografías de menores de edad:</strong> la foto de perfil del alumno es opcional. Su carga implica el consentimiento expreso del padre o tutor. La institución educativa es responsable de contar con dicha autorización antes de cargar cualquier imagen de un menor.</p>
+        <p><strong>Datos de ubicación:</strong> Acadaily utiliza datos de geolocalización únicamente dentro del módulo de excursiones, para registrar el origen, destino y paradas de las rutas escolares. Esta información no se recopila en ningún otro contexto y no se utiliza para rastrear a usuarios fuera de dicha funcionalidad.</p>
+        <p>Al aceptar este Aviso de Privacidad, el usuario otorga su consentimiento expreso para el tratamiento de los datos descritos en esta sección.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">4. Finalidades del tratamiento</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p><strong>Finalidades primarias</strong> (necesarias para el servicio): gestionar el registro y autenticación de usuarios; registrar y consultar la asistencia de alumnos; facilitar la comunicación entre institución, maestros y padres; gestionar tareas, calificaciones y reportes académicos; administrar excursiones escolares y sus rutas; registrar entradas, salidas y cobros mediante código QR en la Scan Station.</p>
+        <p><strong>Finalidades secundarias</strong> (mejora del servicio): analizar el uso de la plataforma para mejorar funcionalidades; generar estadísticas agregadas y anónimas de uso; enviar comunicaciones relacionadas con actualizaciones del servicio.</p>
+        <p>Puedes oponerte al tratamiento para finalidades secundarias sin que ello afecte el acceso a las funcionalidades principales de Acadaily.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">5. Transferencia de datos a terceros</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily comparte datos personales con los siguientes terceros para poder prestar el servicio:</p>
+        <p><strong>Google LLC (Estados Unidos):</strong> Google Cloud Platform para almacenamiento y procesamiento de datos; Firebase para autenticación, base de datos en tiempo real y notificaciones push; Google Analytics for Firebase para análisis de uso de la aplicación.</p>
+        <p>Google LLC está certificado bajo el Marco de Privacidad de Datos UE-EE.UU. y cumple con estándares internacionales de protección de datos. Al usar Acadaily, aceptas que tus datos pueden ser transferidos y procesados en servidores ubicados fuera de México, incluyendo los Estados Unidos de América.</p>
+        <p>No compartimos datos personales con terceros con fines publicitarios o comerciales ajenos a la operación del servicio.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">6. Derechos ARCO</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Como titular de datos personales, tienes derecho a: <strong>Acceso</strong> (conocer qué datos tenemos de ti y cómo los usamos), <strong>Rectificación</strong> (corregir datos inexactos o incompletos), <strong>Cancelación</strong> (pedir la eliminación de tus datos cuando no sean necesarios) y <strong>Oposición</strong> (oponerte al tratamiento para finalidades específicas).</p>
+        <p>Para ejercer tus derechos ARCO, envía una solicitud a acadaily.mx@gmail.com con: nombre completo e identificación oficial, descripción clara del derecho que deseas ejercer, correo electrónico registrado en la cuenta, y documentos que acrediten la solicitud (en caso de ser necesario).</p>
+        <p>Responderemos tu solicitud en un plazo máximo de 20 días hábiles conforme a la LFPDPPP.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">7. Revocación del consentimiento</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Puedes revocar el consentimiento que nos has otorgado para el tratamiento de tus datos personales en cualquier momento, siempre que no exista una obligación legal que lo impida.</p>
+        <p>La revocación del consentimiento puede implicar la imposibilidad de continuar usando Acadaily, ya que el tratamiento de datos es necesario para la prestación del servicio.</p>
+        <p>Para revocar tu consentimiento, envía tu solicitud a acadaily.mx@gmail.com indicando claramente tu intención. Procesaremos la solicitud en un plazo de 20 días hábiles.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">8. Seguridad de los datos</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily implementa medidas técnicas, administrativas y físicas para proteger tus datos personales contra pérdida, robo, acceso no autorizado, divulgación, alteración o destrucción.</p>
+        <p>Entre las medidas implementadas se encuentran: cifrado en tránsito mediante HTTPS/TLS, autenticación segura mediante Firebase Authentication, reglas de acceso a base de datos por rol de usuario y almacenamiento en Google Cloud con controles de seguridad enterprise.</p>
+        <p>En caso de una vulneración de seguridad que afecte de forma significativa los derechos de los titulares, notificaremos al INAI y a los afectados en los plazos establecidos por la ley.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">9. Datos de menores de edad</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily reconoce la protección especial que merecen los datos personales de personas menores de 18 años conforme a la legislación mexicana.</p>
+        <p>Los datos de alumnos menores de edad son proporcionados exclusivamente por la institución educativa o por el padre/tutor registrado. Acadaily no solicita datos directamente a menores ni permite que estos creen cuentas de forma autónoma.</p>
+        <p>La institución educativa es responsable de contar con el consentimiento informado del padre o tutor antes de incorporar datos de cualquier menor a la plataforma.</p>
+        <p>Si eres padre o tutor y consideras que datos de tu hijo han sido incorporados sin tu consentimiento, contáctanos inmediatamente a acadaily.mx@gmail.com y procederemos a la eliminación de dicha información.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">10. Cookies y tecnologías de rastreo</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>La aplicación móvil de Acadaily utiliza Firebase Analytics para recopilar información de uso de forma agregada y anónima. Esta información incluye: pantallas visitadas, tiempo de sesión, tipo de dispositivo y sistema operativo, y eventos de interacción dentro de la app.</p>
+        <p>Esta información se usa exclusivamente para mejorar la experiencia del usuario y optimizar el funcionamiento de la plataforma. No se utiliza para crear perfiles publicitarios individuales.</p>
+        <p>Puedes consultar la política de privacidad de Google Analytics en: policies.google.com/privacy</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">11. Cambios al aviso de privacidad</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Acadaily se reserva el derecho de modificar este Aviso de Privacidad en cualquier momento para reflejar cambios en el servicio, en la legislación aplicable o en nuestras prácticas de tratamiento de datos.</p>
+        <p>Cualquier modificación será notificada a través de la aplicación con al menos 10 días naturales de anticipación a su entrada en vigor. El uso continuado de Acadaily tras la notificación implica la aceptación de las modificaciones.</p>
+        <p>La versión vigente siempre estará disponible dentro de la app en la sección Ajustes → Aviso de Privacidad.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">12. Autoridad competente</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="section-body">
+        <div class="section-divider"></div>
+        <p>Si consideras que tu derecho a la protección de datos personales ha sido vulnerado, puedes presentar una queja ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI):</p>
+        <p>www.inai.org.mx · 800 835 4324<br>Insurgentes Sur 3211, Col. Insurgentes Cuicuilco, Alcaldía Coyoacán, CDMX, C.P. 04530</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Contact card -->
+  <div class="contact-card">
+    <p class="contact-label">Contacto de privacidad</p>
+    <div class="contact-row">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span>acadaily.mx@gmail.com</span>
+    </div>
+    <div class="contact-row">
+      <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm-1 17.93v-2.02c0-.55-.45-1-1-1s-1 .45-1 1v2.02C6.06 19.45 4.03 17.3 3.14 14.6c.49.27 1.06.4 1.64.4h.22c1.1 0 2-.9 2-2 0-.85-.54-1.57-1.29-1.87L3.07 10c.52-3.55 3.47-6.28 7.07-6.66v.66h-.14c-1.1 0-2 .9-2 2 0 .85.54 1.57 1.29 1.87l3.08 1.13c.66.24 1.17.8 1.17 1.49 0 .83-.67 1.5-1.5 1.5H12v6.94zM14.86 19.93v-2.02c0-.38-.21-.72-.54-.88l-2.86-1.43c-.28-.14-.46-.42-.46-.72V10.5c0-.28.14-.53.38-.68l2.62-1.74c.24-.16.53-.17.78-.02l2.16 1.26c.32.19.52.53.52.9V13c0 .55.45 1 1 1s1-.45 1-1v-2.78c0-.95-.5-1.84-1.32-2.32l-2.14-1.25V4.07c3.6.38 6.55 3.11 7.07 6.66l-2.64 1.13c-.75.3-1.29 1.02-1.29 1.87 0 1.1.9 2 2 2h.22c.58 0 1.15-.13 1.64-.4-.89 2.7-2.92 4.85-5.14 5.6z"/></svg>
+      <span>www.acadaily.mx</span>
+    </div>
+    <div class="contact-row">
+      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Erick Eduardo Acevedo Colunga</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Acadaily · Todos los derechos reservados</p>
+  </footer>
+
+</div>
+</body>
+</html>
